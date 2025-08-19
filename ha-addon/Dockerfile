@@ -14,7 +14,10 @@ RUN apk update && apk add --no-cache \
     tzdata \
     build-base \
   && bundle config set deployment 'true' \
-  && gem install balboa_worldwide_app \
+
+RUN gem install specific_install && \
+    gem specific_install -l https://github.com/holdestmade/balboa_worldwide_app.git -b main
+
   && apk del build-base \
   && rm -rf /var/cache/apk/* /tmp/* /var/tmp/*
 
